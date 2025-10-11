@@ -47,7 +47,7 @@ DISCOVERY_DEVICE = {
     'name': 'ezville_wallpad',
     'mf': 'EzVille',
     'mdl': 'EzVille Wallpad',
-    'sw': 'ktdo79/addons/ezville_wallpad',
+    'sw': 'pure100kim/addons/ezville_wallpad',
 }
 
 # MQTT Discovery를 위한 Payload 정보
