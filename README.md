@@ -17,10 +17,12 @@ MQTT Discovery로 장치를 동작 중 자동 추가합니다.
 
 # Change history 
 
-API 버전 이슈로 실행 안됨
+ktdo79 님 add-ons 버전을 분기함
+
+실행시 API 버전 이슈로 실행 안됨
 
 mqtt_client = mqtt.Client('mqtt-ezville')
 
-이 코드는 paho-mqtt 라이브러리의 구 버전 API를 사용하고 있지만, 실행 환경에는 2.0 이상의 버전이 설치되어 있어 ValueError: Unsupported callback API version 에러가 발생하는 것입니다.
+해당 코드는 paho-mqtt 라이브러리의 구 버전 API를 사용하고 있지만, 실행 환경에는 2.0 이상의 버전이 설치되어 있어 ValueError: Unsupported callback API version 에러가 발생함
 
-mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'mqtt-ezville') 로 변경함
+mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'mqtt-ezville') 로 변경 후 정상 동작 함
