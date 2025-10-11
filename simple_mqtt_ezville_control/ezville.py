@@ -976,7 +976,9 @@ def ezville_loop(config):
 
         
     # MQTT 통신
-    mqtt_client = mqtt.Client('mqtt-ezville')
+    # paho-mqtt 라이브러리 1.6버전을 사용하고 있고 실행환경은 2.0 이상 버전으로 에러가 발생되어 변경함.(2025.10.11)
+    # mqtt_client = mqtt.Client('mqtt-ezville')
+    mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'mqtt-ezville')
     mqtt_client.username_pw_set(config['mqtt_id'], config['mqtt_password'])
     mqtt_client.on_connect = on_connect
     mqtt_client.on_disconnect = on_disconnect
