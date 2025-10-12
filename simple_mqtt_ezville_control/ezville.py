@@ -532,8 +532,8 @@ def ezville_loop(config):
                                 # 2025.10.12 수정된 부분: ON/OFF 상태를 반전하여 반영
                                 # '01' (잠금 응답)일 때 'OFF'로, 그 외일 때 'ON'으로 처리.
                                 # ----------------------------------------------------------------------
-                                # onoff = 'ON' if int(packet[12:14], 16) == 1 else 'OFF'  <-- 기존 코드
-                                onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON'
+                                # onoff = 'ON' if int(packet[12:14], 16) == 1 else 'OFF'  
+                                onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON' <-- 변경할 코드
                             
                                         
                                 await update_state(name, 'power', rid, spc, onoff)
@@ -591,32 +591,6 @@ def ezville_loop(config):
                 
             else:
                 k+=1
-
-
-# 2025.10.12 가정: MQTT 클라이언트가 'ezville/gasvalve_01_01/power/command' 토픽에서
-# 'ON' 또는 'OFF' 명령을 수신했을 때 호출됩니다.
-async def handle_gasvalve_command(payload):
-    
-    # 가스 밸브 장치 ID: 12 (이전 분석 기반)
-    DEVICE_ID = '12' 
-    
-    if payload == 'OFF':
-        # 요구사항 충족: 'OFF' 명령 수신 시 잠금 패킷 전송
-        
-        # '41'은 잠금 명령입니다. 데이터는 '0100'으로 가정합니다.
-        # 실제 create_packet 함수와 send_packet 함수는 시스템에 맞게 구현되어야 합니다.
-        
-        # 예시: f7 12 01 41 01 00 a4 f0 (체크섬만 다를 수 있음)
-        command_packet = create_packet(DEVICE_ID, '41', '0100')
-        await send_packet(command_packet) 
-        
-        print("Gas Valve OFF (잠금) 명령 전송 완료")
-        
-    elif payload == 'ON':
-        # 요구사항 충족: 'ON' 명령 수신 시 무시 (강제 ON 금지)
-        print("Gas Valve ON (열림) 명령은 시스템에서 무시됩니다. (수동 조작 필요)")
-        pass # 아무것도 하지 않음
-
 
     
     
