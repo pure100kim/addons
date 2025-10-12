@@ -937,7 +937,7 @@ async def handle_gasvalve_command(payload):
     async def state_update_loop():
         nonlocal force_target_time
         nonlocal force_stop_time
-        nonlocal FORCE_UPDATE
+        global FORCE_UPDATE
         
         while True:
             await process_message()                    
