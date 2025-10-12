@@ -533,7 +533,7 @@ def ezville_loop(config):
                                 # '01' (잠금 응답)일 때 'OFF'로, 그 외일 때 'ON'으로 처리.
                                 # ----------------------------------------------------------------------
                                 # onoff = 'ON' if int(packet[12:14], 16) == 1 else 'OFF'  
-                                onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON' <-- 변경할 코드
+                                onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON' # 변경할 코드
                             
                                         
                                 await update_state(name, 'power', rid, spc, onoff)
