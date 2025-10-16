@@ -532,8 +532,8 @@ def ezville_loop(config):
                                 # 2025.10.12 수정된 부분: ON/OFF 상태를 반전하여 반영
                                 # '01' (잠금 응답)일 때 'OFF'로, 그 외일 때 'ON'으로 처리.
                                 # ----------------------------------------------------------------------
-                                # onoff = 'ON' if int(packet[12:14], 16) == 1 else 'OFF'  
-                                onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON' # 변경할 코드
+                                onoff = 'ON' if int(packet[12:14], 16) == 1 else 'OFF'  
+                                #onoff = 'OFF' if int(packet[12:14], 16) == 1 else 'ON' # 변경할 코드
                             
                                         
                                 await update_state(name, 'power', rid, spc, onoff)
@@ -595,17 +595,17 @@ def ezville_loop(config):
     
     
     # MQTT Discovery로 장치 자동 등록
-    async def mqtt_discovery(payload):
-        intg = payload.pop('_intg')
-
-        # MQTT 통합구성요소에 등록되기 위한 추가 내용
-        payload['device'] = DISCOVERY_DEVICE
-        payload['uniq_id'] = payload['name']
-
-        # Discovery에 등록
-        topic = 'homeassistant/{}/ezville_wallpad/{}/config'.format(intg, payload['name'])
-        log('[INFO] 장치 등록:  {}'.format(topic))
-        mqtt_client.publish(topic, json.dumps(payload))
+#    async def mqtt_discovery(payload):
+#        intg = payload.pop('_intg')
+#
+#        # MQTT 통합구성요소에 등록되기 위한 추가 내용
+#        payload['device'] = DISCOVERY_DEVICE
+#        payload['uniq_id'] = payload['name']
+#
+#        # Discovery에 등록
+#        topic = 'homeassistant/{}/ezville_wallpad/{}/config'.format(intg, payload['name'])
+#        log('[INFO] 장치 등록:  {}'.format(topic))
+#        mqtt_client.publish(topic, json.dumps(payload))
 
     
     # 장치 State를 MQTT로 Publish
